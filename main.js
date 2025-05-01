@@ -444,3 +444,79 @@ document.querySelector(".rooms-control").addEventListener("click", (e) => {
   }
 });
 
+// Get the modal
+var modal = document.getElementById("modal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("add-room");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.addEventListener('click',()=> {
+  modal.style.display = "block";
+}) 
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+//modal form eventlistener
+const form  = document.getElementById('modal-form')
+const newRoomName = document.getElementById('room-name')
+const newRoomTemparature = document.getElementById('room-temp');
+const newStartTime = document.getElementById('start-time')
+const newEndTime = document.getElementById('end-time')
+form.addEventListener('submit',event => {
+  event.preventDefault()
+  //adding the new room data to that old one.
+  let newRoom = {
+    name: newRoomName.value,
+    currTemp: newRoomTemparature.value,
+    coldPreset: 20,
+    warmPreset: 32,
+    image: "./assets/living-room.jpg",
+    airConditionerOn: false,
+    startTime: newStartTime.value,
+    endTime: newEndTime.value,
+
+    setCurrTemp: function(temp) {
+      this.currTemp = temp;
+    },
+
+    setColdPreset: function(newCold) {
+      this.coldPreset = newCold;
+    },
+
+    setWarmPreset: function(newWarm) {
+      this.warmPreset = newWarm;
+    },
+
+    decreaseTemp: function() {
+      this.currTemp--;
+    },
+
+    increaseTemp: function() {
+      this.currTemp++;
+    },
+    toggleAircon: function() {
+      this.airConditionerOn
+        ? (this.airConditionerOn = false)
+        : (this.airConditionerOn = true);
+    },
+  }
+  rooms.push(newRoom)
+  createSelectOptions(newRoom)
+  generateRooms()
+  console.log(rooms)
+  form.reset()
+})

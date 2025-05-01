@@ -369,6 +369,83 @@ svg.point {
   padding-left: 10px; /* Add spacing between times */
 }
 
+.modal{
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  display: grid;
+  gap: 1rem;
+}
+
+.modal-heading{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close {
+  color: #aaaaaa;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-form{
+  display: grid;
+  gap:1rem;
+}
+input{
+  height: 2rem;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+.save-room-count{
+  margin-top: 1rem;
+  padding: 0.3rem;
+  border-radius: 5px;
+  background-color: #edc670d1;
+  border: none;
+  outline: none;
+  transition: 0.5s ease-out;
+}
+.save-room-count:hover,.save-room-count:active{
+  background-color: #e9b034;
+}
+.add-room{
+  outline: none;
+    border: none;
+    background: #d9d9d9;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    transition: 0.5s ease-out;
+}
+.add-room:hover,.add-room:active{
+  background: #a9a9a9; 
+}
 @media only screen and (max-width: 470px) {
   .container {
     width: 360px;

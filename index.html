@@ -65,8 +65,8 @@
               <p>Current Temp</p>
               <h1 id="temp"></h1>
             </div>
+            <div class=""></div>
           </div>
-
           <div class="controls">
             <p>Set Temperature</p>
             <div class="buttons">
@@ -116,7 +116,33 @@
 
             <span class="error"></span>
           </div>
+
+          <button class="add-room" id="add-room">Add room</button>
+          <!-- The Modal -->
+          <div class="modal" id="modal">
+              <!-- The Modal Content-->
+            <div class="modal-content" id="modal-content">
+              <div class="modal-heading" id="modal-heading">
+                <h2>Add rooms</h2>
+                <span class="close" id="close">&times;</span>
+              </div>
+              <form class="modal-form" id="modal-form" >
+                <input placeholder="Enter the room's name" type="text" id="room-name" required>
+                <input placeholder="Enter the temperature value from 10 to 32" type="number" id="room-temp" required>
+                <label id="startime">
+                  Start Time
+                  <input placeholder="Start time" type="time" id="start-time" required>
+                </label>
+                <label id="endtime">
+                  End Time
+                  <input placeholder="End time" type="time" id="end-time" required>
+                </label>
+                <button class="save-room-count" id="save-room-count">Save</button>
+              </form>
+            </div>
+          </div>
         </div>
+      
       </div>
 
       <div

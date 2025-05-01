@@ -34,6 +34,9 @@ const rooms = [
         ? (this.airConditionerOn = false)
         : (this.airConditionerOn = true);
     },
+    setAirconState:function(state){
+      this.airConditionerOn = state
+    }
   },
   {
     name: "Kitchen",
@@ -69,6 +72,10 @@ const rooms = [
         ? (this.airConditionerOn = false)
         : (this.airConditionerOn = true);
     },
+    //new object to change the aircon state.
+    setAirconState:function(state){
+      this.airConditionerOn = state
+    }
   },
   {
     name: "Bathroom",
@@ -104,6 +111,9 @@ const rooms = [
         ? (this.airConditionerOn = false)
         : (this.airConditionerOn = true);
     },
+    setAirconState:function(state){
+      this.airConditionerOn = state
+    }
   },
   {
     name: "Bedroom",
@@ -139,6 +149,9 @@ const rooms = [
         ? (this.airConditionerOn = false)
         : (this.airConditionerOn = true);
     },
+    setAirconState:function(state){
+      this.airConditionerOn = state
+    }
   },
 ];
 
@@ -481,7 +494,7 @@ form.addEventListener('submit',event => {
   //adding the new room data to that old one.
   let newRoom = {
     name: newRoomName.value,
-    currTemp: newRoomTemparature.value,
+    currTemp: parseInt(newRoomTemparature.value),
     coldPreset: 20,
     warmPreset: 32,
     image: "./assets/living-room.jpg",
@@ -513,10 +526,37 @@ form.addEventListener('submit',event => {
         ? (this.airConditionerOn = false)
         : (this.airConditionerOn = true);
     },
+    setAirconState:function(state){
+      this.airConditionerOn = state
+    }
   }
+  //add new room
   rooms.push(newRoom)
+  //add new room option
   createSelectOptions(newRoom)
   generateRooms()
-  console.log(rooms)
   form.reset()
 })
+
+// Check every minute for less pollingto check whether start time is up.500ms was used for testing.
+setInterval(checkTimeAndDisplay, 500); 
+  function checkTimeAndDisplay() {
+    const now = new Date();
+    const currentHour = now.getUTCHours();
+    const currentMinute = now.getUTCMinutes();
+    
+    //calculating currenttime in minutes
+    const currentTimeInMinutes = currentHour * 60 + currentMinute;
+    rooms.forEach((room) => {
+      const startTimeInMinutes = parseInt(room.startTime.slice(0,2)) * 60 + parseInt(room.startTime.slice(-2));
+      const endTimeInMinutes = parseInt(room.endTime.slice(0,2)) * 60 + parseInt(room.endTime.slice(-2));
+
+      if (currentTimeInMinutes >= startTimeInMinutes && currentTimeInMinutes < endTimeInMinutes) {
+        //turnig the aircon on if the start time is reached
+        room.setAirconState(true)
+      }
+    }
+  )
+    //redisplay the rooms to turn the ac on
+      generateRooms();
+  }

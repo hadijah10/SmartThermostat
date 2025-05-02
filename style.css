@@ -446,6 +446,32 @@ input{
 .add-room:hover,.add-room:active{
   background: #a9a9a9; 
 }
+.acswitch{
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: solid 1px #d7d7d7;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in;
+}.acswitch:hover{
+  background-color: #cccbcb;
+}
+.all-ac-btn{
+  display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.8rem;
+}
+.mdo{
+  font-size: 24px;
+    pointer-events: none;
+}
+.powerOn{
+  color: #ffae33;
+}
 @media only screen and (max-width: 470px) {
   .container {
     width: 360px;
@@ -458,7 +484,7 @@ input{
   }
 }
 
-.powerOn {
+.poweron {
   color: #ffae33;
 }
 

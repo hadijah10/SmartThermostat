@@ -395,7 +395,7 @@ const generateRooms = () => {
         </div>
     `;
   });
-
+  
   roomsControlContainer.innerHTML = roomsHTML;
 };
 const displayTime = (room) => {
@@ -539,7 +539,7 @@ form.addEventListener('submit',event => {
 })
 
 // Check every minute for less pollingto check whether start time is up.500ms was used for testing.
-setInterval(checkTimeAndDisplay, 500); 
+setInterval(checkTimeAndDisplay, 60000); 
   function checkTimeAndDisplay() {
     const now = new Date();
     const currentHour = now.getUTCHours();
@@ -560,3 +560,26 @@ setInterval(checkTimeAndDisplay, 500);
     //redisplay the rooms to turn the ac on
       generateRooms();
   }
+
+  //turning on all the buttons in the house.
+  const powericon = document.getElementById('mdo')
+  document.getElementById('acswitch').addEventListener('click',(e) => {
+    e.target.classList.toggle('on')
+
+    if(e.target.classList.contains('on')){
+     
+      rooms.forEach(room => {
+        room.setAirconState(true)
+      })
+    }
+    else{
+      rooms.forEach(room => {
+        room.setAirconState(false)
+      })
+    }
+    
+    //changing the color of the button when clicked
+    powericon.classList.toggle('poweron')
+    
+    generateRooms();
+  })
